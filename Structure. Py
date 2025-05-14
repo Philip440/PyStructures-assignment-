@@ -1,30 +1,39 @@
-# Create an empty list called my_list
-my_list = []
-print(f"Initial list: {my_list}")
+def calculate_discount(price, discount_percent):
+    """Calculates the final price after applying a discount.
 
-# Append the following elements to my_list: 10, 20, 30, 40
-my_list.append(10)
-my_list.append(20)
-my_list.append(30)
-my_list.append(40)
-print(f"List after appending: {my_list}")
+    Args:
+        price: The original price of the item.
+        discount_percent: The discount percentage to apply.
 
-# Insert the value 15 at the second position in the list
-my_list.insert(1, 15)
-print(f"List after inserting 15 at index 1: {my_list}")
+    Returns:
+        The final price after discount, or the original price if
+        the discount is less than 20%.
+    """
+    if discount_percent >= 20:
+        discount_amount = price * (discount_percent / 100)
+        final_price = price - discount_amount
+        return final_price
+    else:
+        return price
 
-# Extend my_list with another list: [50, 60, 70]
-my_list.extend([50, 60, 70])
-print(f"List after extending with [50, 60, 70]: {my_list}")
+# Get user input
+try:
+    original_price = float(input("Enter the original price of the item: "))
+    discount = float(input("Enter the discount percentage: "))
 
-# Remove the last element from my_list
-my_list.pop()
-print(f"List after removing the last element: {my_list}")
+    # Calculate the final price
+    final_price = calculate_discount(original_price, discount)
 
-# Sort my_list in ascending order
-my_list.sort()
-print(f"List after sorting in ascending order: {my_list}")
+    # Print the result
+    if discount >= 20:
+        print(f"Original Price: {original_price:.2f}")
+        print(f"Discount Applied: {discount:.2f}%")
+        print(f"Final Price after Discount: {final_price:.2f}")
+    else:
+        print(f"Original Price: {original_price:.2f}")
+        print("No discount applied as it's less than 20%.")
+        print(f"Final Price: {final_price:.2f}")
 
-# Find and print the index of the value 30 in my_list
-index_of_30 = my_list.index(30)
-print(f"The index of the value 30 in my_list is: {index_of_30}")
+except ValueError:
+    print("Invalid input. Please enter numeric values for price and discount percentage.")
+
